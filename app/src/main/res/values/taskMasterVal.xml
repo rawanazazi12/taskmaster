@@ -14,4 +14,9 @@
     <string name="total">0</string>
     <string name="image2">image2</string>
     <string name="all_tasks_view">ALL Tasks</string>
+    <string name="task_detail_text">Task Detail</string>
+    <string name="task_title_detail"> Task Title </string>
+    <string name="description">Task Description</string>
+    <string name="lorem_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed orci purus. In id erat aliquet, semper nibh id, ullamcorper dui. Aliquam eleifend imperdiet iaculis. Suspendisse congue consectetur scelerisque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam iaculis eros tortor, et euismod nisi suscipit non. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at augue pellentesque, pretium tortor et, tempus tortor. Cras egestas suscipit placerat.</string>
+    <string name="settings">Settings</string>
 </resources>
