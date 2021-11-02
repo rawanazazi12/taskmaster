@@ -16,6 +16,11 @@ public class TaskDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Intent intent = getIntent();
+        ((TextView) findViewById(R.id.TASK_TITLE)).setText(intent.getExtras().getString("title"));
+        ((TextView) findViewById(R.id.DESCRIPTION)).setText(intent.getExtras().getString("body"));
+        ((TextView) findViewById(R.id.state)).setText(intent.getExtras().getString("state"));
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -30,10 +35,10 @@ public class TaskDetail extends AppCompatActivity {
 
         });
 
-        Intent intent2 = getIntent();
-        String taskTitle = (String) intent2.getExtras().get("title");
-        TextView text = findViewById(R.id.TASK_TITLE);
-        text.setText(taskTitle);
+//        Intent intent2 = getIntent();
+//        String taskTitle = (String) intent2.getExtras().get("title");
+//        TextView text = findViewById(R.id.TASK_TITLE);
+//        text.setText(taskTitle);
 
 
     }
