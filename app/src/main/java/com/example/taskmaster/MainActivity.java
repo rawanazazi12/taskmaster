@@ -7,12 +7,16 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -98,9 +102,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Lab 28 create data to use it in the view
+        ArrayList<Task> taskData = new ArrayList<>();
+        taskData.add(new Task("Task 1" , "Linked List revision", "In progress"));
+        taskData.add(new Task("Task 2 ", "Review Stacks and Queues" ,"New"));
+        taskData.add(new Task("Task 3 ", "Solve the Lab" ,"Complete"));
+
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new TaskAdapter(taskData,  new TaskAdapter.OnTaskItemClickListener() {
+            @Override
+            public void onItemClicked(int position) {
+                Intent intentTaskDetails = new Intent(getApplicationContext(), TaskDetail.class);
+                intentTaskDetails.putExtra("title", taskData.get(position).title);
+                intentTaskDetails.putExtra("body", taskData.get(position).body);
+                intentTaskDetails.putExtra("state", taskData.get(position).state);
+                startActivity(intentTaskDetails);
+
+            }
+        }));
+
+
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -120,4 +143,5 @@ public class MainActivity extends AppCompatActivity {
         TextView intro = findViewById(R.id.userTasks);
         intro.setText(USER+"'s " + "TASKS");
     }
+
 }
