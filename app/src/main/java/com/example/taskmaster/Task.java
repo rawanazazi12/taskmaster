@@ -1,9 +1,20 @@
 package com.example.taskmaster;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity
 public class Task {
+    @PrimaryKey(autoGenerate = true)
+    Long id;
 
+    @ColumnInfo(name ="task_title")
     String title;
+
+    @ColumnInfo(name ="task_body")
     String body;
+
+    @ColumnInfo(name ="task_state")
     String state;
 
     public Task(String title, String body, String state) {

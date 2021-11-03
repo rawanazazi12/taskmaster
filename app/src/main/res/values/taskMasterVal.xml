@@ -10,8 +10,7 @@
     <string name="task_description">Task Description</string>
     <string name="do_something">DO Something</string>
     <string name="add_task_Btn">ADD TASK</string>
-    <string name="total_tasks">Total Tasks:</string>
-    <string name="total">0</string>
+    <string name="total_tasks">Total Tasks: 0</string>
     <string name="image2">image2</string>
     <string name="all_tasks_view">ALL Tasks</string>
     <string name="task_detail_text">Task Detail</string>

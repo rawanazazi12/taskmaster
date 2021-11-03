@@ -113,3 +113,29 @@ Refactor the homepage to use a RecyclerView for displaying Task data.
 2. Task Detail Activity
 
 ![detail Activity](/screenshots/taskDetail-lab28.PNG)
+
+
+# LAB29 - Saving Data with Room
+
+## Overview
+
+- Refactoring the model layer to store Task data in a local database.
+
+- Modifying Add Task form to save the data entered in as a Task in local database.
+
+- Refactoring  homepage’s RecyclerView to display all Task entities in database.
+
+
+1. Main Activity 
+
+![main activity](/screenshots/mainActivity-lab29.PNG)
+
+
+2. Add Task Activity
+
+![add Task](/screenshots/addTaskActivity-lab29.PNG)
+
+
+3. Task Detail Activity 
+
+![Task Detail](/screenshots/taskDetails-lab29.PNG)
