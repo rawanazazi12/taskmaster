@@ -99,3 +99,17 @@ Modifying the main Activity and create new activities (Task Detail and Settings)
 ![settings](/screenshots/settingsActivity.PNG)
 
 
+# LAB28 - RecyclerView
+
+## Overview
+
+Refactor the homepage to use a RecyclerView for displaying Task data. 
+
+1. Main Activity 
+
+![main](/screenshots/mainAct-lab28.PNG)
+
+
+2. Task Detail Activity
+
+![detail Activity](/screenshots/taskDetail-lab28.PNG)
