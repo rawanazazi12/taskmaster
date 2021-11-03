@@ -19,8 +19,8 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="129dp"
-        android:layout_height="50dp"
+        android:layout_width="136dp"
+        android:layout_height="46dp"
         android:contentDescription="@string/image"
         android:text="@string/My_Tasks"
         android:textColor="@color/black"
@@ -29,7 +29,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintVertical_bias="0.023" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -65,7 +65,7 @@
         app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.238" />
+        app:layout_constraintVertical_bias="0.203" />
 
     <Button
         android:id="@+id/task2_btn"
@@ -78,7 +78,7 @@
         app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.131" />
+        app:layout_constraintVertical_bias="0.111" />
 
     <Button
         android:id="@+id/task3_btn"
@@ -90,7 +90,7 @@
         app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.238" />
+        app:layout_constraintVertical_bias="0.204" />
 
     <Button
         android:id="@+id/settings_btn"
@@ -106,27 +106,28 @@
     <TextView
         android:id="@+id/userTasks"
         android:layout_width="133dp"
-        android:layout_height="42dp"
+        android:layout_height="38dp"
         android:layout_marginBottom="18sp"
-        android:textSize="18sp"
         android:textColor="@color/purple_700"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/task2_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.961" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="412dp"
-        android:layout_height="292dp"
+        android:layout_width="407dp"
+        android:layout_height="318dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.596" />
+        app:layout_constraintVertical_bias="0.596"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </android.support.constraint.ConstraintLayout>
