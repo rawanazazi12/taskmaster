@@ -21,6 +21,7 @@ public class TaskAdapter extends RecyclerView.Adapter <TaskAdapter.TaskViewHolde
 
     public TaskAdapter(ArrayList<Task> allTasksData, OnTaskItemClickListener listener) {
         this.allTasksData = allTasksData;
+        this.listener = listener;
 
     }
 

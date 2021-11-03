@@ -114,9 +114,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClicked(int position) {
                 Intent intentTaskDetails = new Intent(getApplicationContext(), TaskDetail.class);
-                intentTaskDetails.putExtra("title", taskData.get(position).title);
-                intentTaskDetails.putExtra("body", taskData.get(position).body);
-                intentTaskDetails.putExtra("state", taskData.get(position).state);
+                intentTaskDetails.putExtra("task_title", taskData.get(position).title);
+                intentTaskDetails.putExtra("task_body", taskData.get(position).body);
+                intentTaskDetails.putExtra("task_state", taskData.get(position).state);
                 startActivity(intentTaskDetails);
 
             }
