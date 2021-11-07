@@ -139,3 +139,31 @@ Refactor the homepage to use a RecyclerView for displaying Task data.
 3. Task Detail Activity 
 
 ![Task Detail](/screenshots/taskDetails-lab29.PNG)
+
+
+# Lab: 31 - Espresso and Polish
+
+Testing the code using Espresso Test
+
+  ## Tests :
+
+-  addTaskActTest()
+
+   Testing add Task button and the textView (Add Task)
+
+
+- settingActTest()    
+
+  Testing the ability of input any username and retrive it in the main activity. 
+
+- taskDetailActTest()      
+
+  Testing when the user tap on a task, and then assert that the resulting activity displays the title, body and state of that task in task detail page.
+
+- addTaskAndCheckItInTheRecyclerView()
+
+  Testing if the user can add a new task then when tapping on this task, and assert that the resulting activity displays the title, body and state of that task in task detail page.
+
+
+
+![Espresso Testing](/screenshots/espressoTesting.PNG)
