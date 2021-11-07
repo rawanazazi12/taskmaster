@@ -1,8 +1,7 @@
 package com.example.taskmaster;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class AddTask extends AppCompatActivity {
     @Override
@@ -45,6 +46,15 @@ public class AddTask extends AppCompatActivity {
 
                 Toast submitted = Toast.makeText(getApplicationContext(),"Submitted!",Toast.LENGTH_SHORT);
                 submitted.show();
+            }
+        });
+
+        Button backToHome = findViewById(R.id.home_button);
+        backToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddTask.this , MainActivity.class);
+                startActivity(intent);
             }
         });
     }
