@@ -22,14 +22,18 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         configureAmplify();
+
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -139,24 +143,29 @@ public class MainActivity extends AppCompatActivity {
 
         TaskDao taskDao;
         AppDatabase appDatabase;
-        ArrayList<Task> addedTasks;
-        addedTasks = (ArrayList<Task>) AppDatabase.getInstance(this).taskDao().getAll();
+        List<com.amplifyframework.datastore.generated.model.Task> addedTasks;
+        addedTasks=  GetData();
+//        addedTasks = (ArrayList<Task>) AppDatabase.getInstance(this).taskDao().getAll();
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new TaskAdapter(addedTasks,  new TaskAdapter.OnTaskItemClickListener() {
-            @Override
-            public void onItemClicked(int position) {
-                Intent intentTaskDetails = new Intent(getApplicationContext(), TaskDetail.class);
-                intentTaskDetails.putExtra("task_title", addedTasks.get(position).title);
-                intentTaskDetails.putExtra("task_body", addedTasks.get(position).body);
-                intentTaskDetails.putExtra("task_state", addedTasks.get(position).state);
-                startActivity(intentTaskDetails);
+        recyclerView.setAdapter(new TaskAdapter(addedTasks));
 
-            }
-        }));
+//        List<Task> finalAddedTasks = addedTasks;
+//        recyclerView.setAdapter(new TaskAdapter(addedTasks,  new TaskAdapter.OnTaskItemClickListener() {
+//            @Override
+//            public void onItemClicked(int position) {
+//                Intent intentTaskDetails = new Intent(getApplicationContext(), TaskDetail.class);
+//                intentTaskDetails.putExtra("task_title", addedTasks.get(position).title);
+//                intentTaskDetails.putExtra("task_body", addedTasks.get(position).body);
+//                intentTaskDetails.putExtra("task_state", addedTasks.get(position).state);
+//                startActivity(intentTaskDetails);
+//
+//            }
+//        }));
     }
 
-    private void configureAmplify() {
+    private void configureAmplify()  {
+
         try {
             Amplify.addPlugin(new AWSDataStorePlugin()); // stores records locally
             Amplify.addPlugin(new AWSApiPlugin()); // stores things in DynamoDB and allows us to perform GraphQL queries
@@ -166,5 +175,24 @@ public class MainActivity extends AppCompatActivity {
         } catch (AmplifyException error) {
             Log.e(TAG, "Could not initialize Amplify", error);
         }
+
+    }
+
+    private List<com.amplifyframework.datastore.generated.model.Task> GetData() {
+
+        List<com.amplifyframework.datastore.generated.model.Task> foundExpense=new ArrayList<>();
+
+        Amplify.DataStore.query(
+                com.amplifyframework.datastore.generated.model.Task.class,
+                queryMatches -> {
+                    while (queryMatches.hasNext()) {
+                        Log.i(TAG, "Successful query, found tasks.");
+                        foundExpense.add( queryMatches.next());
+                    }
+                },
+                error -> {
+                    Log.i(TAG,  "Error retrieving expenses", error);
+                });
+        return  foundExpense;
     }
 }

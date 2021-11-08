@@ -9,10 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter <TaskAdapter.TaskViewHolder>{
     ArrayList<Task> allTasksData = new ArrayList<>();
     private OnTaskItemClickListener listener;
+
+    public TaskAdapter(List<com.amplifyframework.datastore.generated.model.Task> addedTasks) {
+    }
 
     public interface OnTaskItemClickListener {
         void onItemClicked(int position);

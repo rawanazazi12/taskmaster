@@ -167,3 +167,12 @@ Testing the code using Espresso Test
 
 
 ![Espresso Testing](/screenshots/espressoTesting.PNG)
+
+
+# Lab 32: Amplify and DynamoDB
+
+implementing AWS amplify to access the data in DynamoDB insted of Room.
+
+- ## DynamoDB
+
+![DynamoDB](/screenshots/dynamoDB.PNG)
