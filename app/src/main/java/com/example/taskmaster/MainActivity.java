@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         TaskDao taskDao;
         AppDatabase appDatabase;
         List<com.amplifyframework.datastore.generated.model.Task> addedTasks;
-        addedTasks=  GetData();
+        addedTasks=  GetDataFromCloud();
 //        addedTasks = (ArrayList<Task>) AppDatabase.getInstance(this).taskDao().getAll();
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -178,21 +178,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private List<com.amplifyframework.datastore.generated.model.Task> GetData() {
+    private List<com.amplifyframework.datastore.generated.model.Task> GetDataFromCloud() {
 
-        List<com.amplifyframework.datastore.generated.model.Task> foundExpense=new ArrayList<>();
+        List<com.amplifyframework.datastore.generated.model.Task> expenses=new ArrayList<>();
 
         Amplify.DataStore.query(
                 com.amplifyframework.datastore.generated.model.Task.class,
                 queryMatches -> {
                     while (queryMatches.hasNext()) {
                         Log.i(TAG, "Successful query, found tasks.");
-                        foundExpense.add( queryMatches.next());
+                        expenses.add( queryMatches.next());
                     }
                 },
                 error -> {
                     Log.i(TAG,  "Error retrieving expenses", error);
                 });
-        return  foundExpense;
+        return  expenses;
     }
 }
