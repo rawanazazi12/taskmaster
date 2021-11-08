@@ -4,25 +4,32 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.AWSDataStorePlugin;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        configureAmplify();
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -149,5 +156,15 @@ public class MainActivity extends AppCompatActivity {
         }));
     }
 
+    private void configureAmplify() {
+        try {
+            Amplify.addPlugin(new AWSDataStorePlugin()); // stores records locally
+            Amplify.addPlugin(new AWSApiPlugin()); // stores things in DynamoDB and allows us to perform GraphQL queries
+            Amplify.configure(getApplicationContext());
 
+            Log.i(TAG, "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e(TAG, "Could not initialize Amplify", error);
+        }
+    }
 }
