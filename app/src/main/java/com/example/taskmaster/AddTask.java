@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.core.Amplify;
 
 public class AddTask extends AppCompatActivity {
@@ -59,7 +60,9 @@ public class AddTask extends AppCompatActivity {
         backToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(AddTask.this , MainActivity.class);
+                intent.putExtra("Configured", "Already configured");
                 startActivity(intent);
             }
         });
@@ -69,12 +72,23 @@ public class AddTask extends AppCompatActivity {
         com.amplifyframework.datastore.generated.model.Task task = com.amplifyframework.datastore.generated.model
                 .Task.builder().title(taskTitle).body(taskBody).state(taskState).build();
 
+
+        Amplify.API.mutate(
+                ModelMutation.create(task), result ->{
+                    Log.i(TAG, "Task Saved");
+                }, error ->{
+                    Log.i(TAG, "Task Not Saved");
+                }
+        );
+
         // save with the datastore
-        Amplify.DataStore.save(task, result -> {
-            Log.i(TAG, "Task Saved");
-        }, error -> {
-            Log.i(TAG, "Task Not Saved");
-        });
+//        Amplify.DataStore.save(task, result -> {
+//            Log.i(TAG, "Task Saved");
+//        }, error -> {
+//            Log.i(TAG, "Task Not Saved");
+//        });
+
+
 
         // query with the datastore
 //        Amplify.DataStore.query(
