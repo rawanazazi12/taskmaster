@@ -44,6 +44,7 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Settings.this , MainActivity.class);
+                intent.putExtra("Configured", "Already configured");
                 startActivity(intent);
             }
         });

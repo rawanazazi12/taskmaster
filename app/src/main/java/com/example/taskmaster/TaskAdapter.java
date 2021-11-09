@@ -12,17 +12,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter <TaskAdapter.TaskViewHolder>{
-    ArrayList<Task> allTasksData = new ArrayList<>();
+   private List<com.amplifyframework.datastore.generated.model.Task> allTasksData = new ArrayList<>();
     private OnTaskItemClickListener listener;
 
-    public TaskAdapter(List<com.amplifyframework.datastore.generated.model.Task> addedTasks) {
-    }
+
+//    public TaskAdapter(List<com.amplifyframework.datastore.generated.model.Task> addedTasks) {
+//    }
+
+//    public TaskAdapter(List<com.amplifyframework.datastore.generated.model.Task> addedTasks, OnTaskItemClickListener listener) {
+//    }
 
     public interface OnTaskItemClickListener {
         void onItemClicked(int position);
     }
 
-    public TaskAdapter(ArrayList<Task> allTasksData, OnTaskItemClickListener listener) {
+    public TaskAdapter(List<com.amplifyframework.datastore.generated.model.Task> allTasksData, OnTaskItemClickListener listener) {
         this.allTasksData = allTasksData;
         this.listener = listener;
 
@@ -62,7 +66,7 @@ public class TaskAdapter extends RecyclerView.Adapter <TaskAdapter.TaskViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder taskViewHolder, int position) {
-        Task item = allTasksData.get(position);
+        com.amplifyframework.datastore.generated.model.Task item = allTasksData.get(position);
         taskViewHolder.title.setText(item.title);
         taskViewHolder.body.setText(item.body);
         taskViewHolder.state.setText(item.state);
