@@ -52,17 +52,7 @@ public class MainActivity extends AppCompatActivity {
          String extra = intent.getStringExtra("Configured");
          System.out.println(extra);
         if (extra == null){
-        try {
-            System.out.println("**********TRY METHOD************");
-            Amplify.addPlugin(new AWSDataStorePlugin());
-            // stores records locally
-            Amplify.addPlugin(new AWSApiPlugin()); // stores things in DynamoDB and allows us to perform GraphQL queries
-            Amplify.configure(getApplicationContext());
-
-            Log.i(TAG, "Initialized Amplify");
-        } catch (AmplifyException error) {
-            Log.e(TAG, "Could not initialize Amplify", error);
-        }
+            configureAmplify();
          }
 
         ActionBar actionBar = getSupportActionBar();
@@ -165,71 +155,28 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//    private void configureAmplify()  {
-//
-//        try {
-//            Amplify.addPlugin(new AWSDataStorePlugin()); // stores records locally
-//            Amplify.addPlugin(new AWSApiPlugin()); // stores things in DynamoDB and allows us to perform GraphQL queries
-//            Amplify.configure(getApplicationContext());
-//
-//            Log.i(TAG, "Initialized Amplify");
-//        } catch (AmplifyException error) {
-//            Log.e(TAG, "Could not initialize Amplify", error);
-//        }
-//
-//    }
+    private void configureAmplify()  {
 
-//    private List<com.amplifyframework.datastore.generated.model.Task> GetDataFromCloud() {
-//
-//        List<com.amplifyframework.datastore.generated.model.Task> expenses=new ArrayList<>();
-//        Amplify.DataStore.query(
-//                com.amplifyframework.datastore.generated.model.Task.class,
-//                queryMatches -> {
-//                    while (queryMatches.hasNext()) {
-//                        Log.i(TAG, "Successful query, found tasks.");
-//                        expenses.add( queryMatches.next());
-//                        System.out.println(expenses.toString()+"EXPENSESSSSSSSSSSSSS");
-//
-//                    }
-//                },
-//                error -> {
-//                    Log.i(TAG,  "Error retrieving expenses", error);
-//                });
-//        return  expenses;
-//    }
+      try {
+            System.out.println("**********TRY METHOD************");
+            Amplify.addPlugin(new AWSDataStorePlugin());
+            // stores records locally
+            Amplify.addPlugin(new AWSApiPlugin()); // stores things in DynamoDB and allows us to perform GraphQL queries
+            Amplify.configure(getApplicationContext());
+
+            Log.i(TAG, "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e(TAG, "Could not initialize Amplify", error);
+        }
+
+    }
+
 
     @Override
     protected void onResume() {
         System.out.println("******************ON RESUME ****************");
 
         super.onResume();
-// Getting data from the cloud
-
-//        List<com.amplifyframework.datastore.generated.model.Task> expenses=new ArrayList<>();
-//        Amplify.DataStore.query(
-//                com.amplifyframework.datastore.generated.model.Task.class,
-//                queryMatches -> {
-//                    while (queryMatches.hasNext()) {
-//                        Log.i(TAG, "Successful query, found tasks.");
-//                        expenses.add( queryMatches.next());
-//                        expenses.toString();
-//                        Set<String> set = new HashSet<String>();
-//                        set.addAll(expenses);
-//                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-//                        SharedPreferences.Editor editor = sharedPreferences.edit();
-//                        editor.putStringSet("key", set);
-//                        editor.commit();
-//
-//                        editor.putString("EXPENSES", expenses.toString());
-//                        editor.apply();
-//
-//                    }
-//                },
-//                error -> {
-//                    Log.i(TAG,  "Error retrieving expenses", error);
-//                });
-//        System.out.println(expenses+"EXPENSESSSSSSSSSSSSS");
-
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String USER = sharedPreferences.getString("USERNAME","");
@@ -242,12 +189,10 @@ public class MainActivity extends AppCompatActivity {
 //        addedTasks = (ArrayList<Task>) AppDatabase.getInstance(this).taskDao().getAll();
 
         addedTasks = new ArrayList<>();
-//        getTasksDataFromCloud();
-
+        getTasksDataFromCloud();
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        recyclerView.setAdapter(new TaskAdapter(addedTasks));
-        System.out.println(addedTasks+"HEREEEEEEEEEEE");
         recyclerView.setAdapter(new TaskAdapter(addedTasks,  new TaskAdapter.OnTaskItemClickListener() {
             @Override
             public void onItemClicked(int position) {
@@ -266,13 +211,12 @@ public class MainActivity extends AppCompatActivity {
                 response -> {
                     for (com.amplifyframework.datastore.generated.model.Task task : response.getData()) {
                         addedTasks.add(task);
-                        System.out.println(addedTasks+"BBBBBBBBBBB");
+                        System.out.println(addedTasks+"HEREEEEE");
                         Log.i(TAG, "Successfully getting Task Title: " + task.getTitle());
                     }
                 },
                 error -> Log.e(TAG, "Failed to get Tasks from From Cloud: " + error.toString())
         );
 
-        System.out.println(addedTasks+"AAAAAAAAAAAAAAAAAAA");
     }
 }
