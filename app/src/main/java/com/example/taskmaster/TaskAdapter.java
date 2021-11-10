@@ -15,12 +15,9 @@ public class TaskAdapter extends RecyclerView.Adapter <TaskAdapter.TaskViewHolde
    private List<com.amplifyframework.datastore.generated.model.Task> allTasksData = new ArrayList<>();
     private OnTaskItemClickListener listener;
 
+    public TaskAdapter(List<com.amplifyframework.datastore.generated.model.Task> addedTasks) {
+    }
 
-//    public TaskAdapter(List<com.amplifyframework.datastore.generated.model.Task> addedTasks) {
-//    }
-
-//    public TaskAdapter(List<com.amplifyframework.datastore.generated.model.Task> addedTasks, OnTaskItemClickListener listener) {
-//    }
 
     public interface OnTaskItemClickListener {
         void onItemClicked(int position);
@@ -67,9 +64,9 @@ public class TaskAdapter extends RecyclerView.Adapter <TaskAdapter.TaskViewHolde
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder taskViewHolder, int position) {
         com.amplifyframework.datastore.generated.model.Task item = allTasksData.get(position);
-        taskViewHolder.title.setText(item.title);
-        taskViewHolder.body.setText(item.body);
-        taskViewHolder.state.setText(item.state);
+        taskViewHolder.title.setText(item.getTitle());
+        taskViewHolder.body.setText(item.getBody());
+        taskViewHolder.state.setText(item.getState());
     }
 
 

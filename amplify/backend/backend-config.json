@@ -9,7 +9,7 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 45,
-              "description": "rawanKey"
+              "description": "taskmasterKey"
             }
           },
           "additionalAuthenticationProviders": []
