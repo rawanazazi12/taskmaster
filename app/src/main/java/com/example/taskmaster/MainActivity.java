@@ -3,6 +3,7 @@ package com.example.taskmaster;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
@@ -18,29 +19,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.datastore.generated.model.Task;
+import com.amplifyframework.datastore.generated.model.Team;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-    private List<Task> addedTasks;
+    private List<Task> addedTasks = new ArrayList<>();
+    Handler handler;
 
-    @Override
-    public FileOutputStream openFileOutput(String name, int mode) throws FileNotFoundException {
-        return super.openFileOutput(name, mode);
-    }
-
-    @Override
-    public void setFinishOnTouchOutside(boolean finish) {
-        super.setFinishOnTouchOutside(finish);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +41,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         System.out.println("***************ON CREATE ****************");
-         Intent intent = getIntent();
-         String extra = intent.getStringExtra("Configured");
-         System.out.println(extra);
-        if (extra == null){
+        Intent intent = getIntent();
+        String extra = intent.getStringExtra("Configured");
+        System.out.println(extra);
+        if (extra == null) {
             configureAmplify();
-         }
+        }
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -61,16 +54,16 @@ public class MainActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.add_task);
 
-        button.setOnClickListener(new View.OnClickListener(){
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 Intent intent1 = new Intent(MainActivity.this, AddTask.class);
                 startActivity(intent1);
             }
         });
 
         Button button2 = findViewById(R.id.all_tasks);
-        button2.setOnClickListener(new View.OnClickListener(){
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent2 = new Intent(MainActivity.this, AllTasks.class);
@@ -82,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
 
             @Override
-             public void onClick(View view ){
-                Intent intent3 = new Intent(MainActivity.this , TaskDetail.class);
+            public void onClick(View view) {
+                Intent intent3 = new Intent(MainActivity.this, TaskDetail.class);
                 TextView text = findViewById(R.id.task1_btn);
                 String data = text.getText().toString();
-                intent3.putExtra("title",data);
+                intent3.putExtra("title", data);
                 startActivity(intent3);
 
             }
@@ -97,11 +90,11 @@ public class MainActivity extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View view ){
-                Intent intent4 = new Intent(MainActivity.this , TaskDetail.class);
+            public void onClick(View view) {
+                Intent intent4 = new Intent(MainActivity.this, TaskDetail.class);
                 TextView text = findViewById(R.id.task2_btn);
                 String data = text.getText().toString();
-                intent4.putExtra("title",data);
+                intent4.putExtra("title", data);
                 startActivity(intent4);
 
             }
@@ -112,11 +105,11 @@ public class MainActivity extends AppCompatActivity {
         button5.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View view ){
-                Intent intent5 = new Intent(MainActivity.this , TaskDetail.class);
+            public void onClick(View view) {
+                Intent intent5 = new Intent(MainActivity.this, TaskDetail.class);
                 TextView text = findViewById(R.id.task3_btn);
                 String data = text.getText().toString();
-                intent5.putExtra("title",data);
+                intent5.putExtra("title", data);
                 startActivity(intent5);
 
             }
@@ -127,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent6 = new Intent(MainActivity.this , Settings.class);
+                Intent intent6 = new Intent(MainActivity.this, Settings.class);
                 startActivity(intent6);
             }
         });
@@ -139,6 +132,9 @@ public class MainActivity extends AppCompatActivity {
 //        taskData.add(new Task("Task 2 ", "Review Stacks and Queues" ,"New"));
 //        taskData.add(new Task("Task 3 ", "Solve the Lab" ,"Complete"));
 
+        saveTeamToApi("Jo Hikers");
+        saveTeamToApi("React Divers");
+        saveTeamToApi("Runtime terror Team");
 
 
     }
@@ -154,10 +150,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private void configureAmplify() {
 
-    private void configureAmplify()  {
-
-      try {
+        try {
             System.out.println("**********TRY METHOD************");
             Amplify.addPlugin(new AWSDataStorePlugin());
             // stores records locally
@@ -171,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     protected void onResume() {
         System.out.println("******************ON RESUME ****************");
@@ -179,9 +173,10 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String USER = sharedPreferences.getString("USERNAME","");
+        String USER = sharedPreferences.getString("USERNAME", "");
+        String teamName = sharedPreferences.getString("teamName", "");
         TextView intro = findViewById(R.id.userTasks);
-        intro.setText(USER+"'s " + "TASKS");
+        intro.setText(USER + "'s " + "TASKS");
 
         TaskDao taskDao;
         AppDatabase appDatabase;
@@ -190,16 +185,24 @@ public class MainActivity extends AppCompatActivity {
 
         addedTasks = new ArrayList<>();
         getTasksDataFromCloud();
+        if (teamName.equals("")) {
+            getTasksDataFromCloud();
+        } else {
+            ((TextView) findViewById(R.id.teamName)).setText(teamName + " Tasks");
+            getTeamDataFromCloud(teamName);
+        }
+
+        Log.i(TAG, "onResume: tasks " + tasks);
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        recyclerView.setAdapter(new TaskAdapter(addedTasks));
-        recyclerView.setAdapter(new TaskAdapter(addedTasks,  new TaskAdapter.OnTaskItemClickListener() {
+        recyclerView.setAdapter(new TaskAdapter(addedTasks, new TaskAdapter.OnTaskItemClickListener() {
             @Override
             public void onItemClicked(int position) {
                 Intent intentTaskDetails = new Intent(getApplicationContext(), TaskDetail.class);
-                intentTaskDetails.putExtra("task_title", addedTasks.get(position).title);
-                intentTaskDetails.putExtra("task_body", addedTasks.get(position).body);
-                intentTaskDetails.putExtra("task_state", addedTasks.get(position).state);
+                intentTaskDetails.putExtra("task_title", addedTasks.get(position).getTitle());
+                intentTaskDetails.putExtra("task_body", addedTasks.get(position).getBody());
+                intentTaskDetails.putExtra("task_state", addedTasks.get(position).getState());
                 startActivity(intentTaskDetails);
 
             }
@@ -211,11 +214,50 @@ public class MainActivity extends AppCompatActivity {
                 response -> {
                     for (com.amplifyframework.datastore.generated.model.Task task : response.getData()) {
                         addedTasks.add(task);
-                        System.out.println(addedTasks+"HEREEEEE");
+                        System.out.println(addedTasks + "HEREEEEE");
                         Log.i(TAG, "Successfully getting Task Title: " + task.getTitle());
                     }
                 },
                 error -> Log.e(TAG, "Failed to get Tasks from From Cloud: " + error.toString())
+        );
+
+    }
+
+    // saving teams to the cloud
+    private void saveTeamToApi(String teamName) {
+        Team team = Team.builder().teamName(teamName).build();
+
+
+        Amplify.API.mutate(
+                ModelMutation.create(team), teamSaved -> {
+                    Log.i(TAG, "Team Saved");
+                    Bundle bundle = new Bundle();
+                    bundle.putString("teamId", teamSaved.getData().getId());
+
+//                    Message message = new Message();
+//                    message.setData(bundle);
+//
+//                    handler.sendMessage(message);
+                }, error -> {
+                    Log.i(TAG, "Team Not Saved");
+                }
+        );
+    }
+
+    private void getTeamDataFromCloud(String teamName) {
+        Amplify.API.query(ModelQuery.list(com.amplifyframework.datastore.generated.model.Task.class),
+                response -> {
+                    for (com.amplifyframework.datastore.generated.model.Task task : response.getData()) {
+
+                        if ((task.te.getTeamName()).equals(teamName)) {
+                            tasks.add(task);
+                            Log.i(TAG, "The Tasks From Cloud are: " + task.getTitle());
+                            Log.i(TAG, "The Team From Cloud are: " + task.getTeam().getTeamName());
+                        }
+                    }
+                    handler.sendEmptyMessage(1);
+                },
+                error -> Log.e(TAG, "Failed to get Tasks from Cloud: " + error.toString())
         );
 
     }
