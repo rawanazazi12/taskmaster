@@ -15,7 +15,7 @@ public class TaskAdapter extends RecyclerView.Adapter <TaskAdapter.TaskViewHolde
    private List<com.amplifyframework.datastore.generated.model.Task> allTasksData = new ArrayList<>();
     private OnTaskItemClickListener listener;
 
-    public TaskAdapter(List<com.amplifyframework.datastore.generated.model.Task> addedTasks) {
+    public TaskAdapter(List<com.amplifyframework.datastore.generated.model.Task> tasks) {
     }
 
 

@@ -6,6 +6,9 @@ subscription OnCreateTask {
     title
     body
     state
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -17,6 +20,9 @@ subscription OnUpdateTask {
     title
     body
     state
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -28,6 +34,9 @@ subscription OnDeleteTask {
     title
     body
     state
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -38,7 +47,11 @@ subscription OnCreateTeam {
     teamName
     tasks {
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -49,7 +62,11 @@ subscription OnUpdateTeam {
     teamName
     tasks {
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -60,7 +77,11 @@ subscription OnDeleteTeam {
     teamName
     tasks {
       nextToken
+      startedAt
     }
+    _version
+    _deleted
+    _lastChangedAt
     createdAt
     updatedAt
   }

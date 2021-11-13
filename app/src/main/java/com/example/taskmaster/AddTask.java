@@ -2,6 +2,7 @@ package com.example.taskmaster;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,8 +20,15 @@ import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Team;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddTask extends AppCompatActivity {
     private static final String TAG = "AddTask";
+    Handler handler;
+    private String teamId = "";
+
+    private final List<Team> teams = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +52,22 @@ public class AddTask extends AppCompatActivity {
                 String taskState = taskStateField.getText().toString();
 
                 RadioButton team1Btn = findViewById(R.id.team1_id);
+                RadioButton team2Btn = findViewById(R.id.team2_id);
+                RadioButton team3Btn = findViewById(R.id.team3_id);
+
+                String id = "0";
+                if(team1Btn.isChecked()){
+                    id="1";
+                }
+                else if(team2Btn.isChecked()){
+                    id="2";
+                }
+                else if(team3Btn.isChecked()){
+                    id="3";
+                }
 
 
-                dataStore(taskTitle, taskDescription, taskState);
+                dataStore(taskTitle, taskDescription, taskState,id);
 
                 Task task = new Task(taskTitle, taskDescription , taskState);
 
@@ -77,9 +98,10 @@ public class AddTask extends AppCompatActivity {
 //    private void dataStore(String taskTitle, String taskDescription, String taskState) {
 //    }
 
-    private void dataStore(String taskTitle, String taskBody,String taskState) {
-        com.amplifyframework.datastore.generated.model.Task task = com.amplifyframework.datastore.generated.model
-                .Task.builder().title(taskTitle).body(taskBody).state(taskState).build();
+    private void dataStore(String taskTitle, String taskBody, String taskState, String id) {
+        com.amplifyframework.datastore.generated.model.Task task  =  com.amplifyframework.datastore.generated.model
+                .Task.builder()
+                .teamId(id).title(taskTitle).body(taskBody).state(taskState).build();
 
 
         Amplify.API.mutate(
