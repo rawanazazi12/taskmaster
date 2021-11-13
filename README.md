@@ -175,7 +175,7 @@ implementing AWS amplify to access the data in DynamoDB insted of Room.
 
 - ## DynamoDB
 
-![DynamoDB](/screenshots/dynamoDB.PNG)
+![DynamoDB](/screenshots/dynamoDB_tasks.PNG)
 
 
 - ## Main Activity
