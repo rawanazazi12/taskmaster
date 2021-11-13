@@ -13,13 +13,13 @@
         android:id="@+id/fragment_title"
         android:layout_width="184dp"
         android:layout_height="30dp"
-        android:textColor="@color/purple_700"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <TextView
         android:id="@+id/fragment_body"
@@ -27,18 +27,18 @@
         android:layout_height="37dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.175"
+        app:layout_constraintHorizontal_bias="0.172"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_title"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintVertical_bias="0.076" />
 
     <TextView
         android:id="@+id/fragment_state"
-        android:layout_width="185dp"
-        android:layout_height="26dp"
+        android:layout_width="218dp"
+        android:layout_height="33dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintHorizontal_bias="0.176"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment_body"
         app:layout_constraintVertical_bias="0.0" />

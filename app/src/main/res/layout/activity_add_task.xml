@@ -56,10 +56,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintHorizontal_bias="0.152"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/task_input"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintVertical_bias="0.044" />
 
     <EditText
         android:id="@+id/task_description_input"
@@ -114,7 +114,7 @@
         app:layout_constraintHorizontal_bias="0.122"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/task_description_input"
-        app:layout_constraintVertical_bias="0.156" />
+        app:layout_constraintVertical_bias="0.067" />
 
     <EditText
         android:id="@+id/task_state_input"
@@ -130,53 +130,46 @@
         app:layout_constraintHorizontal_bias="0.145"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
-        app:layout_constraintVertical_bias="0.082" />
+        app:layout_constraintVertical_bias="0.074" />
 
     <Button
         android:id="@+id/home_button"
         android:layout_width="130dp"
         android:layout_height="49dp"
+        android:layout_marginBottom="20dp"
         android:text="Back to Home"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.807"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.895" />
+        app:layout_constraintHorizontal_bias="0.911"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <RadioButton
-        android:id="@+id/team1_id"
+    <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:text="RadioButton"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/add_task_btn"
-        app:layout_constraintEnd_toStartOf="@+id/team2_id"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/task_state_input"
-        app:layout_constraintVertical_bias="0.488" />
-
-    <RadioButton
-        android:id="@+id/team2_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RadioButton"
-        tools:layout_editor_absoluteX="143dp"
-        tools:layout_editor_absoluteY="556dp" />
-
-    <RadioButton
-        android:id="@+id/team3_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="556dp"
-        android:text="RadioButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.381"
-        app:layout_constraintStart_toEndOf="@+id/team2_id"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_state_input">
+
+        <RadioButton
+            android:id="@+id/team1_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Team 1" />
+
+        <RadioButton
+            android:id="@+id/team2_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Team 2" />
+
+        <RadioButton
+            android:id="@+id/team3_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Team 3" />
+    </RadioGroup>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

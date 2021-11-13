@@ -176,3 +176,41 @@ implementing AWS amplify to access the data in DynamoDB insted of Room.
 - ## DynamoDB
 
 ![DynamoDB](/screenshots/dynamoDB.PNG)
+
+
+- ## Main Activity
+
+![Main Activity](/screenshots/taskApi.PNG)
+
+
+# Lab: 33 - Related Data
+
+## Overview
+
+- Creating a second entity for a team, which has a name and a list of tasks. Update your tasks to be owned by a team.
+
+- Saving teams to dynamoDB
+
+![Teams DynamoDB](/screenshots/teamsApi.PNG)
+
+- Modifying Add Task form to include either a Radio Buttons for three teams to select team that task belongs to.
+
+- Modifying Setting Activity to allow the users to choose their team on the Settings page. then Using that Team to display only that team’s tasks on the homepage.
+
+- ## Add Task Activity
+![add task](/screenshots/lab33_addTask.PNG)
+
+- ## Settings Activity
+![Settings](/screenshots/settings.PNG)
+
+- ## Main Activity
+![main activity](/screenshots/lab33_mainAct.PNG)
+
+# Lab: 34 - Publishing to the Play Store
+
+Building an APK for your taskMater App
+
+![APK](/screenshots/apk.PNG)
+
+[APK](/app/APK/output-metadata.json)
+
