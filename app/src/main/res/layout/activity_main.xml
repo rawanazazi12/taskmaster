@@ -8,10 +8,12 @@
 
     <Button
         android:id="@+id/all_tasks"
-        android:layout_width="109dp"
-        android:layout_height="53dp"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="16dp"
+        android:background="@color/brown"
         android:text="@string/all_tasks_Btn"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -19,11 +21,12 @@
 
     <TextView
         android:id="@+id/textView"
+        android:textAlignment="center"
         android:layout_width="136dp"
         android:layout_height="46dp"
         android:contentDescription="@string/image"
         android:text="@string/My_Tasks"
-        android:textColor="@color/black"
+        android:textColor="@color/brown"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -47,10 +50,12 @@
 
     <Button
         android:id="@+id/add_task"
-        android:layout_width="109dp"
-        android:layout_height="53dp"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
+        android:background="@color/brown"
         android:text="@string/add_Task_Btn"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -61,6 +66,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TASK 1 "
+        android:textColor="@color/white"
+        android:background="@color/brown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
@@ -75,6 +82,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="18dp"
         android:text="TASK 2"
+        android:textColor="@color/white"
+        android:background="@color/brown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,6 +95,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TASK 3"
+        android:textColor="@color/white"
+        android:background="@color/brown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.919"
@@ -95,9 +106,11 @@
 
     <Button
         android:id="@+id/settings_btn"
-        android:layout_width="111dp"
-        android:layout_height="53dp"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:background="@color/brown"
         android:text="Settings"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,12 +121,14 @@
         android:id="@+id/userTasks"
         android:layout_width="175dp"
         android:layout_height="54dp"
+        android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/task2_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.58"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.388" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -139,5 +154,18 @@
         app:layout_constraintHorizontal_bias="0.606"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/task2_btn" />
+
+    <Button
+        android:id="@+id/sign_out_btn"
+        android:layout_width="85dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/brown"
+        android:text="Sign Out"
+        android:textColor="@color/white"
+        android:textSize="13dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

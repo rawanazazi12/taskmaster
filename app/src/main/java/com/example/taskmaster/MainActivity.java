@@ -19,12 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.amplifyframework.AmplifyException;
-import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
 
@@ -46,12 +43,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String extra = intent.getStringExtra("Configured");
         System.out.println(extra);
-        if (extra == null) {
-            configureAmplify();
-        }
+//        if (extra == null) {
+//
+//        }
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
 
 
         Button button = findViewById(R.id.add_task);
@@ -152,21 +150,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void configureAmplify() {
 
-        try {
-            System.out.println("**********TRY METHOD************");
-            Amplify.addPlugin(new AWSDataStorePlugin());
-            // stores records locally
-            Amplify.addPlugin(new AWSApiPlugin()); // stores things in DynamoDB and allows us to perform GraphQL queries
-            Amplify.configure(getApplicationContext());
-
-            Log.i(TAG, "Initialized Amplify");
-        } catch (AmplifyException error) {
-            Log.e(TAG, "Could not initialize Amplify", error);
-        }
-
-    }
 
     @Override
     protected void onResume() {
@@ -178,12 +162,27 @@ public class MainActivity extends AppCompatActivity {
         String USER = sharedPreferences.getString("USERNAME", "");
         String teamName = sharedPreferences.getString("TeamName", "");
         String name = sharedPreferences.getString("name", "");
-        TextView intro = findViewById(R.id.userTasks);
-        intro.setText(USER + "'s " + "TASKS");
+
+        if (!USER.equals("")) {
+            TextView intro = findViewById(R.id.userTasks);
+            intro.setText(USER + "'s " + "TASKS");
+        }
+
         if (!name.equals("")){
             TextView teamNameField = findViewById(R.id.team_tasks_field);
             teamNameField.setText(name + "'s " + "TASKS");
         }
+
+// Getting loggedin username
+        CharSequence loggedInUser = sharedPreferences.getString("email", "");
+        setTitle(loggedInUser + " Profile");
+
+
+// Sign out user
+          Button signOutBtn = findViewById(R.id.sign_out_btn);
+          signOutBtn.setOnClickListener(view -> {
+              signOutUser();
+          });
 
 
 //        TaskDao taskDao;
@@ -296,6 +295,17 @@ public class MainActivity extends AppCompatActivity {
                 }, error -> {
                     Log.i(TAG, "Team Not Saved");
                 }
+        );
+    }
+
+    public void signOutUser(){
+        Amplify.Auth.signOut(
+                () ->{
+                    Log.i(TAG, "Signed out successfully");
+                    Intent intent = new Intent(MainActivity.this, Signin.class);
+                    startActivity(intent);
+                },
+                error -> Log.i(TAG,"Failed to Sign Out", error)
         );
     }
 

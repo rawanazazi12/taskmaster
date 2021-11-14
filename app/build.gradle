@@ -30,6 +30,7 @@ dependencies {
 
     implementation 'androidx.test:core:1.4.0'
     implementation 'androidx.test.espresso:espresso-contrib:3.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
     androidTestImplementation 'junit:junit:4.12'
     def room_version = "2.3.0"
 
@@ -50,6 +51,7 @@ dependencies {
 
     implementation 'com.amplifyframework:aws-api:1.28.3'
     implementation 'com.amplifyframework:aws-datastore:1.28.3'
+    implementation 'com.amplifyframework:aws-auth-cognito:1.28.3'
 
     //noinspection GradleCompatible
 
