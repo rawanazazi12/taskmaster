@@ -11,7 +11,7 @@
         android:layout_width="159dp"
         android:layout_height="47dp"
         android:text="@string/task_detail_text"
-        android:textColor="@color/black"
+        android:textColor="@color/brown"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,61 +24,92 @@
         android:id="@+id/TASK_TITLE"
         android:layout_width="153dp"
         android:layout_height="44dp"
+        android:layout_marginTop="8dp"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintHorizontal_bias="0.143"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.079" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/description_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="166dp"
+        android:layout_height="45dp"
         android:text="@string/description"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TASK_TITLE"
-        app:layout_constraintVertical_bias="0.051" />
+        app:layout_constraintTop_toBottomOf="@+id/TASK_TITLE" />
 
     <TextView
         android:id="@+id/DESCRIPTION"
-        android:layout_width="244dp"
+        android:layout_width="218dp"
         android:layout_height="48dp"
+        android:layout_marginTop="8dp"
         android:text="@string/lorem_description"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.275"
+        app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_header"
-        app:layout_constraintVertical_bias="0.049" />
+        app:layout_constraintTop_toBottomOf="@+id/description_header" />
 
     <Button
         android:id="@+id/home_Btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="65dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/brown"
         android:text="Home"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.897"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DESCRIPTION"
-        app:layout_constraintVertical_bias="0.56" />
+        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/state"
-        android:layout_width="99dp"
-        android:layout_height="34dp"
+        android:layout_width="135dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DESCRIPTION" />
+
+    <TextView
+        android:id="@+id/task_file_id"
+        android:layout_width="137dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="124dp"
+        android:text="Task File"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/state"
+        app:layout_constraintVertical_bias="0.038" />
+
+    <TextView
+        android:id="@+id/file_link"
+        android:layout_width="128dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:text="ddd"
+        android:textColor="@color/brown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_file_id" />
+
+    <ImageView
+        android:id="@+id/task_img"
+        android:layout_width="224dp"
+        android:layout_height="164dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.131"
+        app:layout_constraintHorizontal_bias="0.245"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DESCRIPTION"
-        app:layout_constraintVertical_bias="0.028" />
+        app:layout_constraintTop_toBottomOf="@+id/task_file_id"
+        app:layout_constraintVertical_bias="0.385" />
 </androidx.constraintlayout.widget.ConstraintLayout>

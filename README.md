@@ -252,3 +252,39 @@ I've used email in auth configurations, so each user can view their email in the
 - ## Cognito Board
 
 ![cognito](/screenshots/cognito.PNG)
+
+
+# Lab: 37 - S3 Uploads
+
+Modify Taskmaster app to allow users to upload files related to tasks.
+
+- ## Add Task Activity             
+
+  Allow users to optionally select a file to attach to that task. If a user attaches a file to a task, that file should be uploaded to S3, and associated with that task.
+
+1. Updating Add task activity to allow users to upload file to a task they want to add.
+
+![add task](/screenshots/add_task_lab37.PNG)
+
+
+2. Getting the file from the device when the user hit the upload file button.
+
+![get file](/screenshots/select_from_device.PNG)
+
+3. Once the task added, the file will be uploaded to S3 storage and the file name will be added to the task in DynamoDB
+
+- **S3 Storage**
+![S3 storage](/screenshots/S3_storage.PNG)
+
+
+- **DynamoDB**
+
+![dynamoDB](/screenshots/dynamoDB_lab37.PNG)
+
+
+
+- ## Task Detail Activity
+
+   On Task detail activity, if there is a file that is an image associated with a particular Task, that image should be displayed within that activity.
+
+![task detail](/screenshots/taskDetail_lab37.PNG)

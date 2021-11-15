@@ -9,10 +9,15 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 45,
+              "apiKeyExpirationDate": "2021-12-30T13:15:54.591Z",
               "description": "taskmasterKey"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
         }
       }
     }
@@ -43,6 +48,12 @@
           "EMAIL"
         ]
       }
+    }
+  },
+  "storage": {
+    "taskmaster": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
     }
   }
 }

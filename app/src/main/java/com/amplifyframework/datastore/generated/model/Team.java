@@ -1,19 +1,21 @@
 package com.amplifyframework.datastore.generated.model;
 
-import static com.amplifyframework.core.model.query.predicate.QueryField.field;
+import com.amplifyframework.core.model.annotations.HasMany;
+import com.amplifyframework.core.model.temporal.Temporal;
+
+import java.util.List;
+import java.util.UUID;
+import java.util.Objects;
 
 import androidx.core.util.ObjectsCompat;
 
 import com.amplifyframework.core.model.Model;
-import com.amplifyframework.core.model.annotations.HasMany;
+import com.amplifyframework.core.model.annotations.Index;
 import com.amplifyframework.core.model.annotations.ModelConfig;
 import com.amplifyframework.core.model.annotations.ModelField;
 import com.amplifyframework.core.model.query.predicate.QueryField;
-import com.amplifyframework.core.model.temporal.Temporal;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 
 /** This is an auto generated class representing the Team type in your schema. */
 @SuppressWarnings("all")
@@ -52,7 +54,7 @@ public final class Team implements Model {
   }
   
   @Override
-   public  boolean equals(Object obj) {
+   public boolean equals(Object obj) {
       if (this == obj) {
         return true;
       } else if(obj == null || getClass() != obj.getClass()) {
