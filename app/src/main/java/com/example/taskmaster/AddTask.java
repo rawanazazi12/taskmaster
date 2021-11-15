@@ -1,7 +1,11 @@
 package com.example.taskmaster;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.FileUtils;
 import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,7 +26,12 @@ import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Team;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AddTask extends AppCompatActivity {
@@ -29,6 +40,16 @@ public class AddTask extends AppCompatActivity {
     private String teamId = "";
 
     private final List<Team> teams = new ArrayList<>();
+
+    // LAB 37
+    static String format = "dd-MM-yyyy";
+    @SuppressLint("SimpleDateFormat")
+    static SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+    private static String uploadedFileName = simpleDateFormat.format(new Date());
+    private static String uploadedFileExtension = null;
+    private static File uploadFile = null;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +114,13 @@ public class AddTask extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // upload button
+
+        Button uploadBtn = findViewById(R.id.upload_Btn);
+        uploadBtn.setOnClickListener(view -> {
+            selectFileFromDevice();
+        });
     }
 
 //    private void dataStore(String taskTitle, String taskDescription, String taskState) {
@@ -101,7 +129,8 @@ public class AddTask extends AppCompatActivity {
     private void dataStore(String taskTitle, String taskBody, String taskState, String id) {
         com.amplifyframework.datastore.generated.model.Task task  =  com.amplifyframework.datastore.generated.model
                 .Task.builder()
-                .teamId(id).title(taskTitle).body(taskBody).state(taskState).build();
+                .teamId(id).title(taskTitle).body(taskBody).state(taskState)
+                .fileName(uploadedFileName +"."+ uploadedFileExtension.split("/")[1]).build();
 
 
         Amplify.API.mutate(
@@ -109,6 +138,18 @@ public class AddTask extends AppCompatActivity {
                     Log.i(TAG, "Task Saved");
                 }, error ->{
                     Log.i(TAG, "Task Not Saved");
+                }
+        );
+
+        // uploading file
+        Amplify.Storage.uploadFile(
+                uploadedFileName +"."+ uploadedFileExtension.split("/")[1],
+                uploadFile,
+                success -> {
+                    Log.i(TAG, "Successfully uploaded:  " + success.getKey());
+                },
+                error -> {
+                    Log.e(TAG, "Upload failed " + error.toString());
                 }
         );
 
@@ -126,5 +167,56 @@ public class AddTask extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+// get file from device
 
+    public void selectFileFromDevice(){
+        Intent upload = new Intent(Intent.ACTION_GET_CONTENT);
+        upload.setType("*/*");
+        upload = Intent.createChooser(upload, "Choose a File");
+        startActivityForResult(upload, 200);
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 200 && resultCode == RESULT_OK) {
+            Uri uri = data.getData();
+            uploadedFileExtension = getContentResolver().getType(uri);
+
+            Log.i(TAG, "onActivityResult: file extension is " + uploadedFileExtension);
+            Log.i(TAG, "onActivityResult: " + data.getData());
+            uploadFile = new File(getApplicationContext().getFilesDir(), "uploadFile");
+
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(data.getData());
+                FileUtils.copy(inputStream, new FileOutputStream(uploadFile));
+            } catch (Exception exception) {
+                Log.e(TAG, "File Upload FAILED" + exception.toString());
+            }
+
+        }
+    }
+
+
+//    public void uploadFile() {
+//        File exampleFile = new File(getApplicationContext().getFilesDir(), "ExampleKey");
+//
+//        try {
+//            BufferedWriter writer = new BufferedWriter(new FileWriter(exampleFile));
+//            writer.append("Example file contents");
+//            writer.close();
+//        } catch (Exception exception) {
+//            Log.e(TAG, "Upload failed", exception);
+//        }
+//
+//        Amplify.Storage.uploadFile(
+//                "ExampleKey",
+//                exampleFile,
+//                result -> Log.i(TAG, "Successfully uploaded: " + result.getKey()),
+//                storageFailure -> Log.e(TAG, "Upload failed", storageFailure)
+//        );
+//    }
 }

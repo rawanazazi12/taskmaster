@@ -2,16 +2,32 @@ package com.example.taskmaster;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.amplifyframework.core.Amplify;
+import com.bumptech.glide.Glide;
+
+import java.io.File;
+import java.net.URL;
+
 public class TaskDetail extends AppCompatActivity {
+
+    private static final String TAG = "TaskDetail";
+    private URL url =null;
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +44,11 @@ public class TaskDetail extends AppCompatActivity {
          TextView state =(TextView) findViewById(R.id.state);
          state.setText(intent.getExtras().getString("task_state"));
 
+         // LAB 37
+         String fileName = intent.getStringExtra("task_file");
+         ImageView imageView = findViewById(R.id.task_img);
+
+
          ActionBar actionBar = getSupportActionBar();
          actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -41,11 +62,34 @@ public class TaskDetail extends AppCompatActivity {
 
         });
 
+         // Get file from S3
+
+//
+        handler = new Handler(Looper.getMainLooper(),
+                message -> {
+                    Glide.with(getBaseContext())
+                            .load(url.toString())
+                            .error(R.drawable.ic_clipboard)
+                            .centerCrop()
+                            .into(imageView);
+                    return true;
+                });
+
+        getFileFromS3Storage(fileName);
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
 //        Intent intent2 = getIntent();
 //        String taskTitle = (String) intent2.getExtras().get("title");
 //        TextView text = findViewById(R.id.TASK_TITLE);
 //        text.setText(taskTitle);
-
+        String fileLink = String.format("<a href=\"%s\">download File</a> ", url);
+        TextView link = findViewById(R.id.file_link);
+        link.setText(Html.fromHtml(fileLink));
+        link.setMovementMethod(LinkMovementMethod.getInstance());
 
     }
 
@@ -58,4 +102,28 @@ public class TaskDetail extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    private void getFileFromS3Storage(String key) {
+        Amplify.Storage.downloadFile(
+                key,
+                new File(getApplicationContext().getFilesDir() + key),
+                result -> {
+                    Log.i(TAG, "Successfully downloaded: " + result.getFile().getAbsoluteFile());
+                },
+                error -> Log.e(TAG,  "Download Failure", error)
+        );
+
+        Amplify.Storage.getUrl(
+                key,
+                result -> {
+                    Log.i(TAG, "Successfully generated: " + result.getUrl());
+                    url= result.getUrl();
+                    handler.sendEmptyMessage(1);
+                },
+                error -> Log.e(TAG, "URL generation failure", error)
+        );
+    }
+
 }

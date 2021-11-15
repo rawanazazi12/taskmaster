@@ -5,6 +5,7 @@ type Task @model @key(name: "tasks", fields: ["teamId"]) {
   title: String!
   body: String!
   state: String!
+  fileName: String
 #  team: Team! @connection(fields: ["teamId"])
 
 }
