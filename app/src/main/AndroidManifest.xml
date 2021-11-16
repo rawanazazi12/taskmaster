@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskMaster">
         <activity
+            android:name=".PushListenerService"
+            android:exported="true" />
+        <activity
             android:name=".VerificationActivity"
             android:exported="true" />
         <activity
