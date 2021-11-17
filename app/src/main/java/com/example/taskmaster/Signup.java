@@ -1,5 +1,6 @@
 package com.example.taskmaster;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,8 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 
+
+
 public class Signup extends AppCompatActivity {
 
     private static final String TAG = "Signup" ;
@@ -28,7 +31,13 @@ public class Signup extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
 
         configureAmplify();
+//        createNotificationChannel();
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         EditText username = findViewById(R.id.username_input);
         EditText email = findViewById(R.id.email_input);
         EditText password = findViewById(R.id.password_input);
@@ -54,8 +63,7 @@ public class Signup extends AppCompatActivity {
         });
     }
 
-
-  public void registerUser(String username, String email, String password){
+    public void registerUser(String username, String email, String password){
     AuthSignUpOptions options = AuthSignUpOptions.builder()
             .userAttribute(AuthUserAttributeKey.email(), email)
             .build();
@@ -89,4 +97,21 @@ public class Signup extends AppCompatActivity {
         }
 
     }
+
+//    private void createNotificationChannel() {
+//        // Create the NotificationChannel, but only on API 26+ because
+//        // the NotificationChannel class is new and not in the support library
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            CharSequence name = getString(R.string.channel_name);
+//            String description = getString(R.string.channel_description);
+//            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+//            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+//            channel.setDescription(description);
+//            // Register the channel with the system; you can't change the importance
+//            // or other notification behaviors after this
+//            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+//            notificationManager.createNotificationChannel(channel);
+//        }
+//    }
+
 }

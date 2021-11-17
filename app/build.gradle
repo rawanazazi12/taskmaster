@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -31,7 +32,7 @@ dependencies {
     implementation 'androidx.test:core:1.4.0'
     implementation 'androidx.test.espresso:espresso-contrib:3.4.0'
     implementation 'com.google.android.material:material:1.4.0'
-    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation 'junit:junit:4.13.2'
     def room_version = "2.3.0"
 
     implementation "androidx.room:room-runtime:$room_version"
@@ -55,6 +56,15 @@ dependencies {
     implementation 'com.amplifyframework:aws-auth-cognito:1.28.3'
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
+
+
+    implementation platform('com.google.firebase:firebase-bom:29.0.0')
+    implementation 'com.google.firebase:firebase-messaging'
+
+    implementation 'com.amazonaws:aws-android-sdk-pinpoint:2.33.0'
+    implementation 'com.amazonaws:aws-android-sdk-mobile-client:2.35.0'
 
 
     //noinspection GradleCompatible
