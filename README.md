@@ -288,3 +288,17 @@ Modify Taskmaster app to allow users to upload files related to tasks.
    On Task detail activity, if there is a file that is an image associated with a particular Task, that image should be displayed within that activity.
 
 ![task detail](/screenshots/taskDetail_lab37.PNG)
+
+
+# Lab 38 - Notifications
+
+Adding the ability for push notifications to be delivered to TaskMaster app from the cloud.
+
+
+![notifications](/screenshots/lab38.PNG)
+
+
+![Campaign](/screenshots/lab_38.PNG)
+
+
+
