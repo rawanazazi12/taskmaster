@@ -56,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         getPinpointManager(getApplicationContext());
 
+        assignUserIdToEndpoint();
+
         System.out.println("***************ON CREATE ****************");
         Intent intent = getIntent();
         String extra = intent.getStringExtra("Configured");
@@ -336,6 +338,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+// Lab 38
 
     public static PinpointManager getPinpointManager(final Context applicationContext) {
         if (pinpointManager == null) {
@@ -343,7 +346,7 @@ public class MainActivity extends AppCompatActivity {
             AWSMobileClient.getInstance().initialize(applicationContext, awsConfig, new Callback<UserStateDetails>() {
                 @Override
                 public void onResult(UserStateDetails userStateDetails) {
-                    Log.i("INIT", String.valueOf(userStateDetails.getUserState()));
+                    Log.i(TAG, userStateDetails.getUserState().toString());
                 }
 
                 @Override
