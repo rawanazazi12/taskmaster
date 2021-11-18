@@ -22,6 +22,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.amplifyframework.analytics.AnalyticsEvent;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Team;
@@ -97,6 +98,9 @@ public class AddTask extends AppCompatActivity {
 
                 TextView total = findViewById(R.id.total_tasks);
                 total.setText("Total Tasks : " + counter[0]++);
+
+// record event when the user hit add task button
+                recordAddTaskButton();
 
                 Toast submitted = Toast.makeText(getApplicationContext(),"Submitted!",Toast.LENGTH_SHORT);
                 submitted.show();
@@ -198,6 +202,18 @@ public class AddTask extends AppCompatActivity {
             }
 
         }
+    }
+
+    private void recordAddTaskButton(){
+        AnalyticsEvent event = AnalyticsEvent.builder()
+                .name("Add Task Button Pressed")
+                .addProperty("Channel", "SMS")
+                .addProperty("Successful", true)
+                .addProperty("ProcessDuration", 792)
+                .addProperty("UserAge", 120.3)
+                .build();
+
+        Amplify.Analytics.recordEvent(event);
     }
 
 

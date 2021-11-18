@@ -301,4 +301,13 @@ Adding the ability for push notifications to be delivered to TaskMaster app from
 ![Campaign](/screenshots/lab_38.PNG)
 
 
+# Lab: 39 - Adding Analytics
 
+- Tracking Users                                                
+  Add Analytics to Taskmaster app . Create and send an Event whenever the user hit add task button and visited Add Task Activity .
+
+
+![analytics](/screenshots/lab_39.PNG)
+
+
+![analytics](/screenshots/lab39.PNG)
