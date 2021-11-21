@@ -311,3 +311,24 @@ Adding the ability for push notifications to be delivered to TaskMaster app from
 
 
 ![analytics](/screenshots/lab39.PNG)
+
+
+# Lab: 41 - Intent Filters
+
+Allow users to “share” a photo from another app and open TaskMaster, ready to upload that image as part of a new task.
+
+
+- Select image from gallery 
+
+![shareImg](/screenshots/shareImage.PNG)
+
+
+- share Image to TaskMaster App
+
+![shareImg to taskmaster](/screenshots/shareToTaskmaster.PNG)
+
+
+- View selected image in Add task Activity 
+
+
+![image view ](/screenshots/addTask_lab41.PNG)
