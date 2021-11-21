@@ -56,6 +56,10 @@ public class AddTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
+
+        gettingImageFromDifferentApp();
+
+        
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
@@ -217,6 +221,24 @@ public class AddTask extends AppCompatActivity {
     }
 
 
+
+    public void gettingImageFromDifferentApp() {
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+        ImageView image = findViewById(R.id.image_from_other_app);
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if (type.startsWith("image/")) {
+                Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+                if (imageUri != null) {
+                    image.setImageURI(imageUri);
+                    image.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+    }
+
+}
 //    public void uploadFile() {
 //        File exampleFile = new File(getApplicationContext().getFilesDir(), "ExampleKey");
 //
