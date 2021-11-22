@@ -6,6 +6,8 @@ type Task @model @key(name: "tasks", fields: ["teamId"]) {
   body: String!
   state: String!
   fileName: String
+  lat: Float
+  lon: Float
 #  team: Team! @connection(fields: ["teamId"])
 
 }

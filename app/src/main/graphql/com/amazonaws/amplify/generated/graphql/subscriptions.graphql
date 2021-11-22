@@ -7,6 +7,8 @@ subscription OnCreateTask {
     body
     state
     fileName
+    lat
+    lon
     _version
     _deleted
     _lastChangedAt
@@ -22,6 +24,8 @@ subscription OnUpdateTask {
     body
     state
     fileName
+    lat
+    lon
     _version
     _deleted
     _lastChangedAt
@@ -37,6 +41,8 @@ subscription OnDeleteTask {
     body
     state
     fileName
+    lat
+    lon
     _version
     _deleted
     _lastChangedAt

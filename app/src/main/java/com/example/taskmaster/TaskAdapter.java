@@ -49,6 +49,7 @@ public class TaskAdapter extends RecyclerView.Adapter <TaskAdapter.TaskViewHolde
                 public void onClick(View view) {
                     listener.onItemClicked(getAdapterPosition());
 
+
                 }
             });
         }

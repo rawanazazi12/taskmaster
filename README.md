@@ -318,7 +318,8 @@ Adding the ability for push notifications to be delivered to TaskMaster app from
 Allow users to “share” a photo from another app and open TaskMaster, ready to upload that image as part of a new task.
 
 
-- Select image from gallery 
+
+- Select image from gallery
 
 ![shareImg](/screenshots/shareImage.PNG)
 
@@ -328,7 +329,23 @@ Allow users to “share” a photo from another app and open TaskMaster, ready t
 ![shareImg to taskmaster](/screenshots/shareToTaskmaster.PNG)
 
 
-- View selected image in Add task Activity 
+- View selected image in Add task Activity
 
 
 ![image view ](/screenshots/addTask_lab41.PNG)
+
+
+
+# Lab: 42 - Location
+
+Adding the user’s location to a task automatically when that task is created.
+
+
+- When the user adds a task, their location should be retrieved and included as part of the saved Task.
+
+
+- Displaying the location of a Task in Task Detail Activity if it exists.
+
+
+![location ](/screenshots/location_lab.PNG)
+

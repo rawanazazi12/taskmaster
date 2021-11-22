@@ -19,6 +19,13 @@
         <entry key="..\:/Users/dc/asac/401/taskmaster/app/src/main/res/layout/fragment_task.xml" value="0.25729166666666664" />
         <entry key="..\:/Users/dc/asac/401/taskmaster/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/dc/asac/401/taskmaster/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+        <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.175" />
+        <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/drawable/ic_arrow_right.xml" value="0.175" />
+        <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/drawable/ic_clipboard.xml" value="0.175" />
+        <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/drawable/ic_launcher_background.xml" value="0.175" />
+        <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/layout/activity_add_task.xml" value="0.25" />
+        <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/layout/activity_task_detail.xml" value="0.22" />
+        <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/menu/share.xml" value="0.18" />
       </map>
     </option>
   </component>

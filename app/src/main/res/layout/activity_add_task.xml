@@ -189,8 +189,8 @@
             android:layout_height="wrap_content"
             android:text="Team 3" />
     </RadioGroup>
- 
- <ImageView
+
+    <ImageView
         android:id="@+id/image_from_other_app"
         android:layout_width="145dp"
         android:layout_height="160dp"
@@ -198,5 +198,6 @@
         android:layout_marginBottom="216dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
