@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,12 +57,14 @@ public class AddTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
+        gettingImageFromDifferentApp();
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         final int[] counter = {1};
         Button button = findViewById(R.id.add_task_btn);
-        button.setOnClickListener(new View.OnClickListener(){
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EditText taskTitleField = findViewById(R.id.task_input);
@@ -78,23 +81,21 @@ public class AddTask extends AppCompatActivity {
                 RadioButton team3Btn = findViewById(R.id.team3_id);
 
                 String id = "0";
-                if(team1Btn.isChecked()){
-                    id="1";
-                }
-                else if(team2Btn.isChecked()){
-                    id="2";
-                }
-                else if(team3Btn.isChecked()){
-                    id="3";
+                if (team1Btn.isChecked()) {
+                    id = "1";
+                } else if (team2Btn.isChecked()) {
+                    id = "2";
+                } else if (team3Btn.isChecked()) {
+                    id = "3";
                 }
 
 
-                dataStore(taskTitle, taskDescription, taskState,id);
+                dataStore(taskTitle, taskDescription, taskState, id);
 
-                Task task = new Task(taskTitle, taskDescription , taskState);
+                Task task = new Task(taskTitle, taskDescription, taskState);
 
                 Long addedTaskId = AppDatabase.getInstance(getApplicationContext()).taskDao().insertTask(task);
-                System.out.println("*************************" + "Task Id = "+ addedTaskId);
+                System.out.println("*************************" + "Task Id = " + addedTaskId);
 
                 TextView total = findViewById(R.id.total_tasks);
                 total.setText("Total Tasks : " + counter[0]++);
@@ -102,7 +103,7 @@ public class AddTask extends AppCompatActivity {
 // record event when the user hit add task button
                 recordAddTaskButton();
 
-                Toast submitted = Toast.makeText(getApplicationContext(),"Submitted!",Toast.LENGTH_SHORT);
+                Toast submitted = Toast.makeText(getApplicationContext(), "Submitted!", Toast.LENGTH_SHORT);
                 submitted.show();
             }
 
@@ -113,7 +114,7 @@ public class AddTask extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(AddTask.this , MainActivity.class);
+                Intent intent = new Intent(AddTask.this, MainActivity.class);
                 intent.putExtra("Configured", "Already configured");
                 startActivity(intent);
             }
@@ -131,23 +132,23 @@ public class AddTask extends AppCompatActivity {
 //    }
 
     private void dataStore(String taskTitle, String taskBody, String taskState, String id) {
-        com.amplifyframework.datastore.generated.model.Task task  =  com.amplifyframework.datastore.generated.model
+        com.amplifyframework.datastore.generated.model.Task task = com.amplifyframework.datastore.generated.model
                 .Task.builder()
                 .teamId(id).title(taskTitle).body(taskBody).state(taskState)
-                .fileName(uploadedFileName +"."+ uploadedFileExtension.split("/")[1]).build();
+                .fileName(uploadedFileName + "." + uploadedFileExtension.split("/")[1]).build();
 
 
         Amplify.API.mutate(
-                ModelMutation.create(task), result ->{
+                ModelMutation.create(task), result -> {
                     Log.i(TAG, "Task Saved");
-                }, error ->{
+                }, error -> {
                     Log.i(TAG, "Task Not Saved");
                 }
         );
 
         // uploading file
         Amplify.Storage.uploadFile(
-                uploadedFileName +"."+ uploadedFileExtension.split("/")[1],
+                uploadedFileName + "." + uploadedFileExtension.split("/")[1],
                 uploadFile,
                 success -> {
                     Log.i(TAG, "Successfully uploaded:  " + success.getKey());
@@ -173,7 +174,7 @@ public class AddTask extends AppCompatActivity {
 
 // get file from device
 
-    public void selectFileFromDevice(){
+    public void selectFileFromDevice() {
         Intent upload = new Intent(Intent.ACTION_GET_CONTENT);
         upload.setType("*/*");
         upload = Intent.createChooser(upload, "Choose a File");
@@ -204,7 +205,7 @@ public class AddTask extends AppCompatActivity {
         }
     }
 
-    private void recordAddTaskButton(){
+    private void recordAddTaskButton() {
         AnalyticsEvent event = AnalyticsEvent.builder()
                 .name("Add Task Button Pressed")
                 .addProperty("Channel", "SMS")
@@ -215,6 +216,45 @@ public class AddTask extends AppCompatActivity {
 
         Amplify.Analytics.recordEvent(event);
     }
+
+
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//
+//        switch (item.getItemId()) {
+//            case R.id.settings:
+//                startActivity(new Intent(this, SettingsActivity.class));
+//                break;
+//
+//                return super.onOptionsItemSelected(item);
+//        }
+//
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_dashboard, menu);
+//        return true;
+//    }
+
+    public void gettingImageFromDifferentApp() {
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+        ImageView image = findViewById(R.id.image_from_other_app);
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            if (type.startsWith("image/")) {
+                Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+                if (imageUri != null) {
+                    image.setImageURI(imageUri);
+                    image.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+    }
+
+}
 
 
 //    public void uploadFile() {
@@ -235,4 +275,3 @@ public class AddTask extends AppCompatActivity {
 //                storageFailure -> Log.e(TAG, "Upload failed", storageFailure)
 //        );
 //    }
-}
