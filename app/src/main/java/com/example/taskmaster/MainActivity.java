@@ -240,6 +240,10 @@ public class MainActivity extends AppCompatActivity {
                 intentTaskDetails.putExtra("task_body", finalTasks.get(position).getBody());
                 intentTaskDetails.putExtra("task_state", finalTasks.get(position).getState());
                 intentTaskDetails.putExtra("task_file", finalTasks.get(position).getFileName());
+                if (finalTasks.get(position).getLat() != null && finalTasks.get(position).getLon() != null) {
+                    intentTaskDetails.putExtra("lat", finalTasks.get(position).getLat());
+                    intentTaskDetails.putExtra("lon", finalTasks.get(position).getLon());
+                }
                 startActivity(intentTaskDetails);
 
             }

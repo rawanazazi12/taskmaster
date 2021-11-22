@@ -19,11 +19,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.amplifyframework.core.Amplify;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.File;
 import java.net.URL;
 
-public class TaskDetail extends AppCompatActivity {
+public class TaskDetail extends AppCompatActivity implements OnMapReadyCallback  {
 
     private static final String TAG = "TaskDetail";
     private URL url =null;
@@ -47,9 +53,10 @@ public class TaskDetail extends AppCompatActivity {
          // LAB 37
          String fileName = intent.getStringExtra("task_file");
          ImageView imageView = findViewById(R.id.task_img);
+         
 
 
-         ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
          actionBar.setDisplayHomeAsUpEnabled(true);
 
          Button home = findViewById(R.id.home_Btn);
@@ -91,6 +98,25 @@ public class TaskDetail extends AppCompatActivity {
         link.setText(Html.fromHtml(fileLink));
         link.setMovementMethod(LinkMovementMethod.getInstance());
 
+        // LAB42
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        assert mapFragment != null;
+        mapFragment.getMapAsync(this);
+
+
+    }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        Intent intent = getIntent();
+        Log.i("YOUR LOCATION ", "LOCATION DATA  : " + intent.getExtras().getDouble("lat")+"  -  "+   intent.getExtras().getDouble("lon")  );
+        LatLng loc = new LatLng( intent.getExtras().getDouble("lat"),intent.getExtras().getDouble("lon"));
+        googleMap.addMarker(new MarkerOptions()
+                .position(loc)
+                .title("Location"));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
     }
 
     @Override
