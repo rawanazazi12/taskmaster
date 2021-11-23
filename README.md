@@ -318,6 +318,7 @@ Adding the ability for push notifications to be delivered to TaskMaster app from
 Allow users to “share” a photo from another app and open TaskMaster, ready to upload that image as part of a new task.
 
 
+
 - Select image from gallery
 
 ![shareImg](/screenshots/shareImage.PNG)
