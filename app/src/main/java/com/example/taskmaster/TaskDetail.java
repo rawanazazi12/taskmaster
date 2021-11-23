@@ -53,7 +53,7 @@ public class TaskDetail extends AppCompatActivity implements OnMapReadyCallback 
          // LAB 37
          String fileName = intent.getStringExtra("task_file");
          ImageView imageView = findViewById(R.id.task_img);
-         
+
 
 
         ActionBar actionBar = getSupportActionBar();
