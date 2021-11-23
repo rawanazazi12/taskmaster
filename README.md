@@ -347,3 +347,14 @@ Adding the user’s location to a task automatically when that task is created.
 
 
 ![location ](/screenshots/location_lab.PNG)
+
+
+# Lab: 43 - Analytics with Pinpoint
+
+Adding analytics to TaskMaster application that allow tracking user sessions within the application.
+
+
+![analytics with pinpoint](/screenshots/lab43.PNG)
+
+
+![analytics with pinpoint](/screenshots/lab_43.PNG)
