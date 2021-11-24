@@ -379,5 +379,3 @@ public class AddTask extends AppCompatActivity {
 
 }
 
-
-//
