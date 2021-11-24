@@ -358,3 +358,48 @@ Adding analytics to TaskMaster application that allow tracking user sessions wit
 
 
 ![analytics with pinpoint](/screenshots/lab_43.PNG)
+
+
+
+# Lab: 44 - TaskMaster Polish
+
+Polishing TaskMaster app and adding some styles .
+
+- SignUp Activity
+
+![signup activity](/screenshots/signup_44.PNG)
+
+
+- SignIn Activity
+
+
+![signin activity](/screenshots/signin_44.PNG)
+
+
+- Main Activity
+
+
+![main activity](/screenshots/main_44.PNG)
+
+
+
+- Add Task Activity
+
+
+
+![add task activity](/screenshots/addTask_44.PNG)
+
+
+
+- Task Detail Activity
+
+
+![task detail activity](/screenshots/taskDetail_44.PNG)
+
+
+
+- Settings Activity
+
+
+![settings activity](/screenshots/settings_44.PNG)
+

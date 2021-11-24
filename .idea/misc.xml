@@ -24,7 +24,15 @@
         <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/drawable/ic_clipboard.xml" value="0.175" />
         <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/drawable/ic_launcher_background.xml" value="0.175" />
         <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/layout/activity_add_task.xml" value="0.25" />
+        <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/layout/activity_all_tasks.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/layout/activity_map.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/layout/activity_settings.xml" value="0.33" />
+        <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/layout/activity_signin.xml" value="0.33" />
+        <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/layout/activity_signup.xml" value="0.33" />
         <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/layout/activity_task_detail.xml" value="0.22" />
+        <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/layout/activity_verification.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/layout/fragment_task.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/dc/asac/latestAndroid/taskmaster/app/src/main/res/menu/share.xml" value="0.18" />
       </map>
     </option>
