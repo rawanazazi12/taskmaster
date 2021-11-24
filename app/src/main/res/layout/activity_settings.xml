@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/brown"
     tools:context=".Settings">
 
     <TextView
@@ -11,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/settings"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,9 +26,14 @@
         android:layout_width="258dp"
         android:layout_height="58dp"
         android:layout_marginTop="88dp"
+        android:backgroundTint="@color/white"
+        android:drawableTint="@color/white"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
+        android:shadowColor="@color/white"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.405"
@@ -41,6 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
         android:text="SAVE"
+        android:background="@color/white"
+        android:textColor="@color/brown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -73,18 +81,26 @@
             android:id="@+id/team1_BTN_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Team 1" />
+            android:buttonTint="@color/white"
+            android:checked="false"
+            android:text="Team 1"
+            android:textColor="@color/white"
+            />
 
         <RadioButton
             android:id="@+id/team2_BTN_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/white"
+            android:textColor="@color/white"
             android:text="Team 2" />
 
         <RadioButton
             android:id="@+id/team3_BTN_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/white"
+            android:textColor="@color/white"
             android:text="Team 3" />
     </RadioGroup>
 

@@ -1,5 +1,6 @@
 package com.example.taskmaster;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,8 +66,11 @@ public class TaskAdapter extends RecyclerView.Adapter <TaskAdapter.TaskViewHolde
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder taskViewHolder, int position) {
         com.amplifyframework.datastore.generated.model.Task item = allTasksData.get(position);
+        taskViewHolder.title.setTextColor(Color.parseColor("#F3EFCC"));
         taskViewHolder.title.setText(item.getTitle());
+        taskViewHolder.body.setTextColor(Color.parseColor("#FFFFFFFF"));
         taskViewHolder.body.setText(item.getBody());
+        taskViewHolder.state.setTextColor(Color.parseColor("#FFFFFFFF"));
         taskViewHolder.state.setText(item.getState());
     }
 
